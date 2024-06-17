@@ -13,27 +13,33 @@ import java.util.Scanner;
  * @author sivagamasrinivasan
  * 
  */
-public class ArithmeticBase 
-{
- public double x,y;
-    double calculate(double x, double y) 
-        {
-        Scanner sc =new Scanner(System.in);
-        System.out.println("Enter arithmetic operation to Perform: ");
-        String s= sc.next();
-        switch (s.toUpperCase()) 
-        {
-            case "PLUS":
-                return x + y;
-            case "MINUS":
-                return x - y;
-            case "TIMES":
-                return x * y;
-            case "DIVIDE":
-                return x / y;
-            default:
-                throw new AssertionError("Unknown operations " + this);
-        }
+
+
+public class ArithmeticBase {
+    private double x;
+    private double y;
+
+    public double getX() {
+        return x;
     }
-   
+
+    public void setX(double x) {
+        this.x = x;
+    }
+
+    public double getY() {
+        return y;
+    }
+
+    public void setY(double y) {
+        this.y = y;
+    }
+
+    public double calculate(OperationType operationType) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter arithmetic operation to Perform: ");
+        ArithmeticOperation operation = OperationFactory.createOperation(operationType);
+        return operation.calculate(x, y);
+    }
 }
+
